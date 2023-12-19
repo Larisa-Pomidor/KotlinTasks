@@ -8,6 +8,21 @@ fun findMissingAndRepeatedValues(grid: Array<IntArray>): IntArray {
     return intArrayOf(elementsOccurringTwice, missingElement)
 }
 
+fun countTestedDevices(batteryPercentages: IntArray): Int {
+    var result = 0;
+    for (i in batteryPercentages.indices) {
+        if (batteryPercentages[i] != 0) {
+            result++
+            for (j in i + 1..<batteryPercentages.size) {
+                if (batteryPercentages[j] >= 1) {
+                    batteryPercentages[j]--
+                }
+            }
+        }
+    }
+    return result
+}
+
 fun main() {
     val grid = arrayOf(
         intArrayOf(9, 1, 7),
@@ -16,4 +31,5 @@ fun main() {
     )
 
     findMissingAndRepeatedValues(grid)
+    countTestedDevices(intArrayOf(1, 1, 2, 1, 3))
 }
